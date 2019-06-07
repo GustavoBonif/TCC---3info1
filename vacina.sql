@@ -16,7 +16,7 @@ coduser int
 
 CREATE TABLE noticias (
 nome varchar(200),
-texto varchar(2000),
+texto varchar(3000),
 codnoticia int not null auto_increment PRIMARY KEY
 );
 
@@ -52,11 +52,11 @@ FOREIGN KEY(coduser) REFERENCES user (coduser)
 );
 
 CREATE TABLE vacina (
-descricao varchar(220),
+descricao varchar(400),
 nome varchar(100),
 codvacina int not null auto_increment PRIMARY KEY,
 dose int,
-idade int,
+idade varchar(20),
 coduser int,
 FOREIGN KEY(coduser) REFERENCES user (coduser)
 );
