@@ -1,0 +1,26 @@
+.menu-texto {
+
+	color: #7e77b0;
+}
+.login{
+	background-color: #167ce9;
+	border-radius: 18px;
+	color:white;
+}
+
+.nav-item{
+	margin: 0 1% 0 0;
+}
+
+/*        L O G I N     */
+
+.form-login{
+    width: 20%;
+    margin: 10% 0 0 40%; 
+}
+
+.tituloLogin{
+    color: white;
+    font-family: Arial;
+    font-size: 28px;
+}
