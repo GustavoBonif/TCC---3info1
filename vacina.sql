@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 25-Jun-2019 às 02:25
+-- Generation Time: 11-Ago-2019 às 23:52
 -- Versão do servidor: 10.1.40-MariaDB
 -- versão do PHP: 7.3.5
 
@@ -39,7 +39,7 @@ CREATE TABLE `noticias` (
 --
 
 INSERT INTO `noticias` (`nome`, `texto`, `codnoticia`) VALUES
-('Campanha ocorre na cidade', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s', 1);
+('11', '222', 1);
 
 -- --------------------------------------------------------
 
@@ -91,13 +91,13 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`email`, `senha`, `coduser`, `nome`, `codtipuser`) VALUES
-('boni@gmail.com', 'boni', 1, 'Bonifacio', 1),
-('fulano@gmail.com', '123', 2, 'Fulano', 2),
-('jeni@gmail.com', '123', 3, 'Jeni', 2),
-('dimitri@gmail.com', '123', 5, 'Dimitri', 1),
-('luci@gmail.com', 'luci', 32, 'luci', 1),
-('alan@gmail.com', 'alan', 35, 'alan', 3),
-('deltrano@gmail.com', '123', 36, 'deltrano', 2);
+('admin@gmail.com', 'admin', 3, 'Administrador', 3),
+('jeni@gmail.com', 'jeni', 33, 'Jenifer', 2),
+('gustavo@gmail.com', '123', 38, 'Gustavo', 2),
+('claudia@gmail.com', '123', 39, 'Claudia Huber', 1),
+('ze@gmail.com', '123', 41, 'José da Silva', 1),
+('teste@gmail.com', '123', 42, 'Teste', 1),
+('luci@gmail.com', '123', 43, 'Luci da Silva Bonifácio', 1);
 
 -- --------------------------------------------------------
 
@@ -116,8 +116,10 @@ CREATE TABLE `usercomum` (
 --
 
 INSERT INTO `usercomum` (`rg`, `cpf`, `coduser`) VALUES
-(555555, 22222, 5),
-(123123, 123213, 1);
+(2222, 1111, 42),
+(8828282, 919191, 39),
+(2020202, 929292929, 43),
+(11919919, 2147483647, 41);
 
 -- --------------------------------------------------------
 
@@ -126,18 +128,19 @@ INSERT INTO `usercomum` (`rg`, `cpf`, `coduser`) VALUES
 --
 
 CREATE TABLE `userfuncionario` (
-  `horariotrab` time DEFAULT NULL,
+  `localtrab` varchar(50) DEFAULT NULL,
   `codfunc` int(11) NOT NULL,
-  `coduser` int(11) DEFAULT NULL
+  `coduser` int(11) DEFAULT NULL,
+  `cpf` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `userfuncionario`
 --
 
-INSERT INTO `userfuncionario` (`horariotrab`, `codfunc`, `coduser`) VALUES
-('01:00:00', 1, 2),
-('03:00:00', 2, 3);
+INSERT INTO `userfuncionario` (`localtrab`, `codfunc`, `coduser`, `cpf`) VALUES
+('Posto de Saúde de Araquari', 5, 33, 82828282),
+('Posto de Saúde de Araquari', 7, 38, NULL);
 
 -- --------------------------------------------------------
 
@@ -159,8 +162,30 @@ CREATE TABLE `vacina` (
 --
 
 INSERT INTO `vacina` (`descricao`, `nome`, `codvacina`, `dose`, `idade`, `coduser`) VALUES
-('indicada para a profilaxia contra o tétano causado pelo C. tetani, difteria causada pelo C. diphtheriae e a coqueluche causada pela B. ', 'Tétano', 1, 3, '4', 3),
-('utilizada na prevenção da febre amarela, doença causada por um arbovírus da família Flaviviridae, do gênero Flavivírus.', 'Febre Amarela', 2, 1, '1', 2);
+('previne as formas graves de tuberculose, principalmente miliar e meníngea', 'BCG', 1, 1, '0', NULL),
+('previne difteria, tétano, coqueluche, hepatite B e meningite e infecções por HiB', 'Pentavalente', 2, 3, '9', NULL),
+('previne a doença meningocócica C', 'Meningocócica C ', 3, 5, '0.3/ 0.5/ 1/ 11/ 14 ', NULL),
+('previne a poliomielite ou paralisia infantil', 'VIP', 4, 3, '0.2/ 0.4/ 0,6', NULL),
+('previne pneumonia, otite, meningite e outras doenças causadas pelo Pneumococo', 'Pneumocócica 10 Valente', 5, 3, '0.2/ 0.4/ 1', NULL),
+('previne diarreia por rotavírus', 'Rotavírus', 6, 2, '0.2/ 0.4', NULL),
+('previne sarampo, caxumba e rubéola', 'Tríplice viral', 7, 2, '1/ 10', NULL),
+('Difteria, tétano e coqueluche', 'DTP ', 8, 2, '1.3/ 4', NULL),
+('previne poliomielite ou paralisia infantil', 'VOP', 9, 2, '1.3/ 4', NULL),
+('previne a hepatite A ', 'Hepatite A ', 10, 1, '1.3', NULL),
+('previne sarampo, rubéola, caxumba e varicela/catapora', 'Tetra viral', 11, 1, '1.3', NULL),
+('previne varicela/catapora', 'Varicela atenuada', 12, 1, '4', NULL),
+('previne o papiloma, vírus humano que causa cânceres e verrugas genitais', 'HPV ', 13, 2, '11/ 11.6', NULL),
+('previne a Hepatite B', 'Hepatite B', 14, 3, '10/ 15/ 18', NULL),
+('previne difteria e tétano', 'Dupla Adulto', 15, 0, 'a cada 10 anos', NULL),
+('(previne pneumonia, otite, meningite e outras doenças causadas pelo Pneumococo', 'Pneumocócica 23 Valente', 16, 1, '14', NULL),
+('não te deixa morrer', 'Vacina teste', 17, 1, '2', NULL),
+(NULL, NULL, 18, NULL, NULL, NULL),
+(NULL, NULL, 19, NULL, NULL, NULL),
+(NULL, NULL, 20, NULL, NULL, NULL),
+(NULL, NULL, 21, NULL, NULL, NULL),
+(NULL, NULL, 22, NULL, NULL, NULL),
+(NULL, NULL, 23, NULL, NULL, NULL),
+(NULL, NULL, 24, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -173,16 +198,23 @@ CREATE TABLE `vacinacao` (
   `codvacina` int(11) DEFAULT NULL,
   `cpf` int(11) DEFAULT NULL,
   `data` date DEFAULT NULL,
-  `dose` int(11) DEFAULT NULL
+  `dose` int(11) DEFAULT NULL,
+  `codvacinacao` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `vacinacao`
 --
 
-INSERT INTO `vacinacao` (`codfunc`, `codvacina`, `cpf`, `data`, `dose`) VALUES
-(1, 1, 123213, '2019-05-24', 1),
-(2, 2, 22222, '2019-05-03', 1);
+INSERT INTO `vacinacao` (`codfunc`, `codvacina`, `cpf`, `data`, `dose`, `codvacinacao`) VALUES
+(7, 17, 1111, '2019-07-29', 1, 3),
+(NULL, 2, NULL, '2019-07-30', 2, 4),
+(5, 7, 929292929, '2019-07-23', 1, 5),
+(NULL, 3, NULL, '2019-07-24', 2, 6),
+(NULL, 8, NULL, '2222-02-22', 1, 9),
+(7, 10, 919191, '0005-05-05', 3, 10),
+(7, 3, 919191, '0033-03-31', 2, 14),
+(7, 9, 2147483647, '0022-02-22', 3, 15);
 
 --
 -- Indexes for dumped tables
@@ -239,9 +271,10 @@ ALTER TABLE `vacina`
 -- Indexes for table `vacinacao`
 --
 ALTER TABLE `vacinacao`
+  ADD PRIMARY KEY (`codvacinacao`),
+  ADD KEY `codvacina` (`codvacina`),
   ADD KEY `cpf` (`cpf`),
-  ADD KEY `codfunc` (`codfunc`),
-  ADD KEY `codvacina` (`codvacina`);
+  ADD KEY `codfunc` (`codfunc`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -263,19 +296,25 @@ ALTER TABLE `tipuser`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `coduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `coduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `userfuncionario`
 --
 ALTER TABLE `userfuncionario`
-  MODIFY `codfunc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `codfunc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `vacina`
 --
 ALTER TABLE `vacina`
-  MODIFY `codvacina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `codvacina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `vacinacao`
+--
+ALTER TABLE `vacinacao`
+  MODIFY `codvacinacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
@@ -316,9 +355,9 @@ ALTER TABLE `vacina`
 -- Limitadores para a tabela `vacinacao`
 --
 ALTER TABLE `vacinacao`
-  ADD CONSTRAINT `vacinacao_ibfk_1` FOREIGN KEY (`cpf`) REFERENCES `usercomum` (`cpf`),
-  ADD CONSTRAINT `vacinacao_ibfk_2` FOREIGN KEY (`codfunc`) REFERENCES `userfuncionario` (`codfunc`),
-  ADD CONSTRAINT `vacinacao_ibfk_3` FOREIGN KEY (`codvacina`) REFERENCES `vacina` (`codvacina`);
+  ADD CONSTRAINT `vacinacao_ibfk_1` FOREIGN KEY (`codvacina`) REFERENCES `vacina` (`codvacina`),
+  ADD CONSTRAINT `vacinacao_ibfk_2` FOREIGN KEY (`cpf`) REFERENCES `usercomum` (`cpf`),
+  ADD CONSTRAINT `vacinacao_ibfk_3` FOREIGN KEY (`codfunc`) REFERENCES `userfuncionario` (`codfunc`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
